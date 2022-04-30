@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../Assests/icons8-bbb.svg";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -6,6 +6,9 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import PeopleIcon from "@mui/icons-material/People";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import ForumSharpIcon from "@mui/icons-material/ForumSharp";
+import ArrowRightSharpIcon from "@mui/icons-material/ArrowRightSharp";
+import ArrowDropDownSharpIcon from "@mui/icons-material/ArrowDropDownSharp";
 
 const isNotActiveStyle = "text-[#555555] flex flex-col items-center";
 const isActiveStyle =
@@ -52,10 +55,23 @@ const dummyData = [
   },
 ];
 
+const dummyData2 = [
+  {
+    id: 1,
+    description: "Let’s talk career",
+  },
+  {
+    id: 2,
+    description: "Tech Verse",
+  },
+];
+
 const colors = ["red", "blue", "green", "blue", "orange"];
 
 const Community = () => {
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
+
   const logout = () => {
     navigate("/login/adminLogin");
   };
@@ -98,12 +114,12 @@ const Community = () => {
           <p className="">Logout</p>
         </div>
       </div>
-      <div className="h-[45.5rem] bg-white flex-[0.93] my-4 rounded-2xl mr-4 pl-[3.1rem] pt-[3rem]">
+      <div className="h-[45.5rem] bg-white flex-[0.93] my-4 rounded-2xl mr-4 pl-[3.1rem] pr-[3.1rem] pt-[3rem]">
         <div>
           <p className="text-4xl font-bold">Community</p>
         </div>
-        <div className="flex flex-row">
-          <div className="flex flex-col">
+        <div className="flex flex-row space-x-8">
+          <div className="flex flex-col flex-[0.68]">
             <div className="w-auto h-40 rounded-3xl shadow-lg p-8 mt-4 space-y-2">
               <div>
                 <div className="flex flex-row space-x-20 ">
@@ -190,8 +206,55 @@ const Community = () => {
                 </div>
               ))}
             </div>
+          </div>
 
-            <div className="w-auto">{/* Form */}</div>
+          <div className="flex flex-col flex-[0.32] mr-3 space-y-3 rounded-3xl shadow-lg h-fit p-3">
+            <div className="flex flex-row space-x-5 ">
+              <ForumSharpIcon className="mt-2" fontSize="large" alt="" />
+              <p className="text-4xl font-bold">Forums</p>
+            </div>
+
+            <div className="flex flex-col space-x-2">
+              <div className="flex">
+                <button onClick={() => setIsActive(!isActive)}>
+                  {isActive ? (
+                    <ArrowDropDownSharpIcon
+                      style={{
+                        color: "black",
+                        backgroundColor: "E7E7E7",
+                        size: "medium",
+                        height: "auto",
+                      }}
+                    />
+                  ) : (
+                    <ArrowRightSharpIcon
+                      style={{
+                        color: "black",
+                        backgroundColor: "E7E7E7",
+                        size: "medium",
+                        height: "auto",
+                      }}
+                    />
+                  )}
+                </button>
+                <div className="w-full ml-3">
+                  <p className="text-1xl font-normal text-base text-gray-500">
+                    Lounge - General
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex-col space-y-2 mt-2">
+                {isActive &&
+                  dummyData2.map((item) => (
+                    <div className="ml-6 bg-gray-200 w-[10rem] rounded-md pl-2">
+                      <p className="text-1xl font-normal text-base text-gray-500">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
