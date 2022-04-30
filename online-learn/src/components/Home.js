@@ -7,6 +7,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import PeopleIcon from "@mui/icons-material/People";
 import StarIcon from "@mui/icons-material/Star";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const isNotActiveStyle = "text-[#555555] flex flex-col items-center";
@@ -164,11 +165,19 @@ const Home = () => {
                 onClick={() => setOpenCourse(data)}
                 key={i}
                 className="flex cursor-pointer hover:scale-105 duration-150 transition-all bg-white h-[9.125rem] shadow-md rounded-2xl p-3 ">
-                <img
-                  src={data.img}
-                  className="h-[7.8125rem] w-[10.125rem]"
-                  alt=""
-                />
+                <NavLink
+                  to="/course"
+                  className="relative h-[7.8125rem] w-[17.125rem] bg-black">
+                  <img
+                    src={data.img}
+                    className="hover:opacity-50 w-full h-full "
+                    alt=""
+                  />
+                  <PlayCircleOutlineIcon
+                    fontSize="large"
+                    className="absolute text-white top-[50%] left-[50%] backdrop-blur-md -translate-x-[50%] -translate-y-[50%]"
+                  />
+                </NavLink>
                 <div className="ml-5">
                   <h4 className="font-bold text-[15px] mb-3">{data.title}</h4>
                   <p className="text-[12px] text-[#ADADAD]">
